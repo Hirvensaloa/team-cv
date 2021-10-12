@@ -81,7 +81,8 @@ function App() {
 
       <Section title="Team Skills">
 
-      <Body>
+        <Spacer size={15}/>
+
         <SkillDesc title="Node.js and React">
           <Body>
             Several team members have working experience with different types of fullstack Javascript projects with NodeJS and React. 
@@ -118,8 +119,6 @@ function App() {
           </Body>
         </SkillDesc>
 
-      </Body>
-
       </Section>
 
       <Spacer/>
@@ -136,37 +135,36 @@ function App() {
   );
 }
 
-function Section({title, children}: {title: string, children: ReactNode}) {
+type SectionProps = {
+  title: string, 
+  children: ReactNode
+}
+
+function Section({title, children}: SectionProps) {
   return (
     <SectionWrapper>
-    <Title>
-    {title}
-    </Title>
-    {children}
+      <Title>
+        {title}
+      </Title>
+      {children}
     </SectionWrapper>
   )
 }
 
-function SkillDesc({title, children}: {title: string, children: ReactNode}) {
+function SkillDesc({title, children}: SectionProps) {
   return (
     <SectionWrapper>
-    <SkillTitle>
-      {title}
-    </SkillTitle>
-    {children}
+      <SkillTitle>
+        {title}
+      </SkillTitle>
+      {children}
     </SectionWrapper>
   )
 }
 
 const Image = styled.img`
-  width: 100%;
-  max-width: 1280px;
-  
-  & :before {
-	content: "";
-	float: left;
-	padding-top: 69%; 	
-}
+  width: 100vw;
+  height: calc(100vw * 0.69);
 `;
 
 const SkillTitle = styled.div`
@@ -195,8 +193,8 @@ const SideColumn = styled.div`
   min-width: 300px;
 `;
 
-const Spacer = styled.div`
-  margin: 20px;
+const Spacer = styled.div<{size?: number}>`
+  margin: ${p => p?.size ? p.size : '20'}px;
   margin-left: 50px;
   
   @media (max-width: 768px) {
@@ -229,6 +227,7 @@ const Body = styled.div`
   padding-bottom: 30px;
   padding-top: 30px;
   text-align: center;
+  color: #474747;
 
   @media (max-width: 768px) {
     padding-left: 10px;
