@@ -164,7 +164,8 @@ function SkillDesc({title, children}: SectionProps) {
 
 const Image = styled.img`
   width: 100vw;
-  height: calc(100vw * 0.69);
+  max-width: 1580px;
+  height: calc(min(100vw, 1580px) * 0.69);
 `;
 
 const SkillTitle = styled.div`
